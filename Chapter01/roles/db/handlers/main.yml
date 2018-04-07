@@ -1,15 +1,15 @@
 - name: start mysql
-  service:
+  systemd:
     state: started
     name: mysql
 
 - name: stop mysql
-  service:
+  systemd:
     state: stopped
     name: mysql
 
 - name: restart mysql
-  service:
+  systemd:
     state: restarted
     name: mysql
     daemon_reload: yes

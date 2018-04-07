@@ -12,7 +12,6 @@
     host: "{{ item }}"
     login_password: "{{ mysql_root_password }}"
     login_user: root
-
   with_items:
     - 127.0.0.1
     - localhost
@@ -30,6 +29,5 @@
   service:
     name: mysql
     enabled: yes
-
   notify:
     - start mysql

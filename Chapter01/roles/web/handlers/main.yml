@@ -1,15 +1,15 @@
 - name: start apache2
-  service:
+  systemd:
     state: started
     name: apache2
 
 - name: stop apache2
-  service:
+  systemd:
     state: stopped
     name: apache2
 
 - name: restart apache2
-  service:
+  systemd:
     state: restarted
     name: apache2
     daemon_reload: yes

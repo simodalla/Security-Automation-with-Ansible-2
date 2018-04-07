@@ -4,6 +4,8 @@
     question: mysql-server/root_password
     value: "{{ mysql_root_password | quote }}"
     vtype: password
+  tags:
+    - db
 
 - name: confirm mysql root password
   debconf: 
@@ -11,14 +13,24 @@
     question: mysql-server/root_password_again
     value: "{{ mysql_root_password | quote }}"
     vtype: password
+  tags:
+    - db
 
 - name: install mysqlserver
   apt:
     name: "{{ item }}"
     state: present
-  
   with_items:
    - mysql-server
    - mysql-client
+  tags:
+    - db
+
+- name: Create .my.cnf
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+  tags:
+    - db
 
 - include: harden.yml
+  tags:
+    - db

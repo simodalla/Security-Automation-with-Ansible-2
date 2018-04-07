@@ -2,6 +2,8 @@
   apt:
     name: apache2
     state: present
+  tags: 
+    - web
 
 - name: update the apache2 server configuration
   template: 
@@ -10,11 +12,14 @@
     owner: root
     group: root
     mode: 0644
+  tags: 
+    - web
 
 - name: enable apache2 on startup
   service:
     name: apache2
     enabled: yes
-
   notify:
     - start apache2
+  tags: 
+    - web
